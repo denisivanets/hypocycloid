@@ -13,9 +13,9 @@ public class Main {
 
     private void run() {
         frame = new JFrame("Hypocycloid");
-        frame.setSize(700, 700);
+        frame.setSize(1000, 700);
         frame.setVisible(true);
-        val pointsProvider = new HypocycloidPointsProvider(1, 4);
+        val pointsProvider = new HypocycloidPointsProvider(1, 6);
         val drawer = new Drawer(pointsProvider);
         frame.getContentPane().add(drawer);
     }

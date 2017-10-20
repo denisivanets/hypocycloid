@@ -1,5 +1,6 @@
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.SneakyThrows;
 import lombok.val;
 
 import javax.swing.*;
@@ -8,22 +9,22 @@ import java.awt.*;
 @RequiredArgsConstructor
 public class Drawer extends JPanel {
 
-    @Setter
     private final PointProvider provider;
+    @Setter
+    private int sizeCoeff;
 
     @Override
+    @SneakyThrows
     public void paint(Graphics g) {
         val points = provider.providePoints();
         for (int i = 0; i < points.size() - 1; i++) {
             val firstPoint = points.get(i);
             val secondPoint = points.get(i + 1);
-            int firstX = (int) (firstPoint.getX() * 100 + 500);
-            int firstY = -(700 - ((int) (firstPoint.getY() * 100 + 500)));
-            int secondX = (int) (secondPoint.getY() * 100 + 500);
-            int secondY = (int) (secondPoint.getY() * 100 + 500);
-            g.drawLine(firstX, firstY, secondX, secondY);
-//            g.drawOval(firstX, firstY, 3, 3);
-            System.out.println(firstX + ";" + firstY);
+            int x1 = (int) (firstPoint.getX() * 50) + 300;
+            int x2 = (int) (secondPoint.getX() * 50) + 300;
+            int y1 = (int) (firstPoint.getY() * 50) + 300;
+            int y2 = (int) (secondPoint.getY() * 50) + 300;
+            g.drawLine(x1, y1, x2, y2);
         }
     }
 }

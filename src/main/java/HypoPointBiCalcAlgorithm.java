@@ -1,9 +1,6 @@
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 
-//import static java.lang.Math.cos;
-//import static java.lang.Math.sin;
-
 @RequiredArgsConstructor
 public class HypoPointBiCalcAlgorithm implements PointBiCalcAlgorithm {
 
@@ -19,17 +16,17 @@ public class HypoPointBiCalcAlgorithm implements PointBiCalcAlgorithm {
         return point;
     }
 
-    private double calcX(double r, double R) {
-        double k = r / R;
-        double X = (R - r) * cos(teta) + r * (cos((R - r) * teta / r));
-        System.out.println("X: " + X);
+    private double calcX(final double r, final double R) {
+        double k = R / r;
+        double secondPart = cos(teta) + (cos((k -1) * teta))/(k - 1);
+        double X = r * (k - 1) * secondPart;
         return X;
     }
 
-    private double calcY(double r, double R) {
-        double k = r / R;
-        double Y = (R - r) * sin(teta) + r * (sin((R - r) * teta / r));
-        System.out.println("Y:" + Y);
+    private double calcY(final double r, final double R) {
+        double k = R / r;
+        double secondPart = sin(teta) - (sin((k -1)*teta))/(k - 1);
+        double Y = r * (k - 1) * secondPart;
         return Y;
     }
 
@@ -38,6 +35,6 @@ public class HypoPointBiCalcAlgorithm implements PointBiCalcAlgorithm {
     }
 
     private double sin(final double arg) {
-        return Math.sin(arg);
+        return Math.sin(arg * 3.14 / 180);
     }
 }
